@@ -1,5 +1,6 @@
 from constants import SCREEN_WIDTH, SCREEN_HEIGHT
 from logger import log_state
+from player import Player
 import pygame
 
 def main():
@@ -8,20 +9,24 @@ def main():
     print(f"Screen height: {SCREEN_HEIGHT}")
     pygame.init()
     clock = pygame.time.Clock()
-    dt = 0
+    player = Player(SCREEN_WIDTH/2, SCREEN_HEIGHT/2)
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     while True:
+        # Set to 60 FPS
+        dt = clock.tick(60) / 1000
+        # Initialize logging 
         log_state()
+
         # Check if user click the close button
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
+        
+        # Show screen
         screen.fill("black")
+        # Draw Player
+        player.draw(screen)
         pygame.display.flip()
-        dt = clock.tick(60) / 1000
-        # print(dt)
-        # Set FPS to 60
-        clock.tick(60)
 
 
 if __name__ == "__main__":
