@@ -19,7 +19,7 @@ def main():
         screen.fill("black")
         pygame.display.flip()
         dt = clock.tick(60) / 1000
-        print(dt)
+        # print(dt)
         # Set FPS to 60
         clock.tick(60)
 
